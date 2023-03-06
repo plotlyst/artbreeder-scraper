@@ -6,9 +6,9 @@ from atomicwrites import atomic_write
 from selenium import webdriver
 
 driver = webdriver.Chrome()
-driver.get("https://www.artbreeder.com/browse")
-elem = driver.find_element('xpath', "//*[@data-name='portraits_sg2']")
-elem.click()
+driver.get("https://www.artbreeder.com/browse?sort=trending&modelName=portraits_sg2")
+# elem = driver.find_element('xpath', "//*[@data-name='portraits_sg2']")
+# elem.click()
 
 SCROLL_PAUSE_TIME = 1
 
