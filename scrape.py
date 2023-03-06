@@ -7,7 +7,7 @@ from selenium import webdriver
 
 driver = webdriver.Chrome()
 driver.get("https://www.artbreeder.com/browse")
-elem = driver.find_element_by_xpath("//*[@data-name='portraits_sg2']")
+elem = driver.find_element('xpath', "//*[@data-name='portraits_sg2']")
 elem.click()
 
 SCROLL_PAUSE_TIME = 1
@@ -31,7 +31,7 @@ while i < 50:
     i += 1
 
 urls = []
-elements = driver.find_elements_by_class_name('main_image')
+elements = driver.find_elements('class name', 'main_image')
 for el in elements:
     match = re.search(r'http.*\.(jpeg|png|jpg|gif)', el.get_attribute('style'))
     if match:
