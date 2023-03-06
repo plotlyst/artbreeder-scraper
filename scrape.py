@@ -1,14 +1,12 @@
 import json
-import re
 import time
 
 from atomicwrites import atomic_write
 from selenium import webdriver
 
+# driver = webdriver.Chrome(executable_path='/home/zkovari/Downloads/chromedriver')
 driver = webdriver.Chrome()
 driver.get("https://www.artbreeder.com/browse?sort=trending&modelName=portraits_sg2")
-# elem = driver.find_element('xpath', "//*[@data-name='portraits_sg2']")
-# elem.click()
 
 SCROLL_PAUSE_TIME = 1
 
@@ -16,7 +14,7 @@ SCROLL_PAUSE_TIME = 1
 last_height = driver.execute_script("return document.body.scrollHeight")
 
 i = 0
-while i < 50:
+while i < 25:
     # Scroll down to bottom
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
@@ -31,11 +29,11 @@ while i < 50:
     i += 1
 
 urls = []
-elements = driver.find_elements('class name', 'main_image')
+elements = driver.find_elements('xpath', "//*[@alt='img from artbreeder']")
 for el in elements:
-    match = re.search(r'http.*\.(jpeg|png|jpg|gif)', el.get_attribute('style'))
-    if match:
-        urls.append(match.group(0))
+    img_src = el.get_attribute('src')
+    if img_src:
+        urls.append(img_src)
 
 driver.close()
 
