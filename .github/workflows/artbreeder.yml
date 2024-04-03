@@ -1,8 +1,7 @@
 name: Artbreeder
 
 on:
-  schedule:
-    - cron: '0 7 * * *'
+  push
 
 jobs:
   Collect:
